@@ -47,36 +47,36 @@ public class Circolo {
 
     public double calcolaEtaMediaGenere(char sesso) {
         int sommaEta = 0;
-        int conteggioSoci = 0;
+        int contSoci = 0;
         for (Soci socio : socis.values()) {
             if (socio.getGenere() == sesso) {
                 sommaEta += socio.getEta();
-                conteggioSoci++;
+                contSoci++;
             }
         }
-        if (conteggioSoci == 0) {
+        if (contSoci == 0) {
             return 0;
         }
-        return (double) sommaEta / conteggioSoci;
+        return (double) sommaEta / contSoci;
     }
 
     public HashMap<Character, Double> calcolaDistribuzionePercentualeGenere() {
         HashMap<Character, Double> distribuzione = new HashMap<>();
-        int conteggioMaschi = 0;
-        int conteggioFemmine = 0;
+        int contM = 0;
+        int contF = 0;
         for (Soci socio : socis.values()) {
             if (socio.getGenere() == 'M') {
-                conteggioMaschi++;
+                contM++;
             } else if (socio.getGenere() == 'F') {
-                conteggioFemmine++;
+                contF++;
             }
         }
-        int conteggioTotale = conteggioMaschi + conteggioFemmine;
-        if (conteggioTotale > 0) {
-            double percentualeMaschi = (double) conteggioMaschi / conteggioTotale * 100;
-            double percentualeFemmine = (double) conteggioFemmine / conteggioTotale * 100;
-            distribuzione.put('M', percentualeMaschi);
-            distribuzione.put('F', percentualeFemmine);
+        int contTot = contM + contF;
+        if (contTot > 0) {
+            double percM = (double) contM / contTot * 100;
+            double percF = (double) contF / contTot * 100;
+            distribuzione.put('M', percM);
+            distribuzione.put('F', percF);
         }
         return distribuzione;
     }
@@ -85,14 +85,14 @@ public class Circolo {
     }
     public void caricaSociSuFile(String nomeFile) {
         try (BufferedReader reader = new BufferedReader(new FileReader(nomeFile))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                String[] tokens = line.split(" ");
-                if (tokens.length == 4) {
-                    String nome = tokens[0];
-                    String cognome = tokens[1];
-                    int eta = Integer.parseInt(tokens[2]);
-                    char sesso = tokens[3].charAt(0);
+            String linea;
+            while ((linea = reader.readLine()) != null) {
+                String[] oggetti = linea.split(" ");
+                if (oggetti.length == 4) {
+                    String nome = oggetti[0];
+                    String cognome = oggetti[1];
+                    int eta = Integer.parseInt(oggetti[2]);
+                    char sesso = oggetti[3].charAt(0);
 
                     Soci socio = new Soci(nome, cognome, eta, sesso);
                     aggiungiSocio(socio);
@@ -101,7 +101,7 @@ public class Circolo {
         } catch (FileNotFoundException e) {
             System.err.println("File non trovato: " + e.getMessage());
         } catch (IOException e) {
-            System.err.println("Errore durante la lettura del file: " + e.getMessage());
+            System.err.println("Errore lettura file: " + e.getMessage());
         }
     }
 }

@@ -8,8 +8,8 @@ public class Main {
         Circolo circ = new Circolo();
 
        
-        Soci socio1 = new Soci("Samuele", "Labollita", 35, 'M');
-        Soci socio2 = new Soci("Matilde", "Loda", 40, 'F');
+        Soci socio1 = new Soci("Samuele", "Labollita", 18, 'M');
+        Soci socio2 = new Soci("Matilde", "Loda", 17, 'F');
         Soci socio3 = new Soci("Luca", "Rossi", 25, 'M');
         
         
