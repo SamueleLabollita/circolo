@@ -20,8 +20,8 @@ public class Circolo {
         Soci socio = socis.get(chiave);
         if (socio != null) {
             socio.setGenere(nuovoGenere);
-            socio.incrementaEta();
-            System.out.println("Socio modificato");
+            socio.setEta(nuovaEta);
+            //System.out.println("Socio modificato");
         } else {
             System.out.println("Socio non trovato");
         }
@@ -31,7 +31,7 @@ public class Circolo {
         String chiave = nome + cognome;
         Soci socio = socis.remove(chiave);
         if (socio != null) {
-            System.out.println("Socio rimosso");
+            //System.out.println("Socio rimosso");
         } else {
             System.out.println("Socio non trovato");
         }
@@ -39,15 +39,25 @@ public class Circolo {
 
     public double calcolaEtaMedia() {
         int sommaEta = 0;
+        double etamedia = 0;
+        
+        if (socis.isEmpty()) {
+            return 0; 
+        }
+        
         for (Soci socio : socis.values()) {
             sommaEta += socio.getEta();
         }
-        return (double) sommaEta / socis.size();
+        
+        etamedia = (double) sommaEta / socis.size();
+        return etamedia;
     }
+    
 
     public double calcolaEtaMediaGenere(char sesso) {
         int sommaEta = 0;
         int contSoci = 0;
+        double etamedia = 0;
         for (Soci socio : socis.values()) {
             if (socio.getGenere() == sesso) {
                 sommaEta += socio.getEta();
@@ -57,7 +67,8 @@ public class Circolo {
         if (contSoci == 0) {
             return 0;
         }
-        return (double) sommaEta / contSoci;
+        etamedia = (double) sommaEta / contSoci;
+        return etamedia; 
     }
 
     public HashMap<Character, Double> calcolaDistribuzionePercentualeGenere() {

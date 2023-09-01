@@ -24,6 +24,10 @@ public class Soci {
     public int getEta() {
         return eta;
     }
+    
+    public void setEta(int eta) {
+        this.eta= eta;
+    }
 
     public void incrementaEta() {
         eta++;
