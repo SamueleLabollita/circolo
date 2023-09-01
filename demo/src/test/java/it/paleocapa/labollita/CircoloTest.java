@@ -7,7 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 /**
  * Unit test for simple App.
  */
-import java.io.*;
 import java.util.*;
 
 public class CircoloTest {
